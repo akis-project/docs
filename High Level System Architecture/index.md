@@ -1,1 +1,1 @@
-images will come here
+![test](/static/proxy-schema.jpg)
