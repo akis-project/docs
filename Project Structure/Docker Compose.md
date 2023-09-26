@@ -2,7 +2,15 @@
 order: 4
 ---
 
-This is the main component that orchestrates the other components.
+This is the main component :brain: that orchestrates the other components.
+
+It does the followings:
+
+1. Stores config files
+2. Manages services
+3. Manages volumes
+4. Manages networks
+5. Manages environment variables
 
 There is a `docker-compose.yml` file that defines the services, volumes and networks of the project.
 
