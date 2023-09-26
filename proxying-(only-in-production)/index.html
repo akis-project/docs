@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749038416348">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749039614342">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,6 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Proxying (only in production)</title>
     <meta name="title" content="Proxying (only in production)">
+    <meta name="description" content="As stated before, things work different in production mode.">
 
     <!-- Canonical -->
     <link rel="canonical" href="/proxying-(only-in-production)/">
@@ -19,19 +20,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="/proxying-(only-in-production)/">
     <meta property="og:title" content="Proxying (only in production)">
+    <meta property="og:description" content="As stated before, things work different in production mode.">
+    <meta property="og:image" content="/static/proxy-schema.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="/proxying-(only-in-production)/">
     <meta property="twitter:title" content="Proxying (only in production)">
+    <meta property="twitter:description" content="As stated before, things work different in production mode.">
+    <meta property="twitter:image" content="/static/proxy-schema.jpg">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.749038416348" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.749039614342" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749038416348" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749039614342" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749038416348" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749039614342" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -152,6 +157,19 @@
         <span>Proxying (only in production)</span>
     </h1>
 </doc-anchor-target>
+<ul>
+<li>As stated before, things work different in production mode.</li>
+<li>IT team has configured a reverse-proxy in <code v-pre>demos.sabanciuniv.edu</code> to forward requests to <code v-pre>vpa-com16</code> host instance&#x27;s <code v-pre>3000</code> port.</li>
+<li>This means, when you visit <code v-pre>demos.sabanciuniv.edu</code>, you are actually visiting <code v-pre>vpa-com16:3000</code> in the host instance.</li>
+<li>Also it is worth to mention that there is no SSL certificate set in <code v-pre>vpa-com16</code>. So you can&#x27;t visit <code v-pre>vpa-com16</code> directly over HTTP. You can only visit <code v-pre>demos.sabanciuniv.edu</code> over HTTPS which will communicate with <code v-pre>vpa-com16</code>&#x27;s port 3000.</li>
+<li>One benefit of such reverse-proxying is hiding <code v-pre>vpa-com16</code>&#x27;s other services from <code v-pre>demos</code>, which brings another safety level. <code v-pre>demos</code> will only know about the port 3000 of <code v-pre>vpa-com16</code> and nothing else.</li>
+</ul>
+<p>Here is the schema of proxies:
+<figure class="content-center">
+    <img src="../static/proxy-schema.jpg" alt="schema">
+    <figcaption class="caption">schema</figcaption>
+</figure>
+</p>
 
                                 
                                 <!-- Required only on API pages -->
