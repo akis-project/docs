@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749038020826">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749038416348">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Running Locally</title>
-    <meta name="title" content="Running Locally">
-    <meta name="description" content="Within only one command, you can start the whole project.">
+    <title>Running Locally &#128187;</title>
+    <meta name="title" content="Running Locally 💻">
+    <meta name="description" content="Ensure that you have the followings installed before you attempt to run the project in your computer:">
 
     <!-- Canonical -->
     <link rel="canonical" href="/running-locally/">
@@ -19,23 +19,25 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="/running-locally/">
-    <meta property="og:title" content="Running Locally">
-    <meta property="og:description" content="Within only one command, you can start the whole project.">
+    <meta property="og:title" content="Running Locally 💻">
+    <meta property="og:description" content="Ensure that you have the followings installed before you attempt to run the project in your computer:">
+    <meta property="og:image" content="/static/folder-structure.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="/running-locally/">
-    <meta property="twitter:title" content="Running Locally">
-    <meta property="twitter:description" content="Within only one command, you can start the whole project.">
+    <meta property="twitter:title" content="Running Locally 💻">
+    <meta property="twitter:description" content="Ensure that you have the followings installed before you attempt to run the project in your computer:">
+    <meta property="twitter:image" content="/static/folder-structure.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.749038020826" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.749038416348" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749038020826" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749038416348" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749038020826" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.749038020826" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749038416348" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.749038416348" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -153,9 +155,104 @@
 <doc-anchor-target id="running-locally" class="break-words">
     <h1>
         <doc-anchor-trigger class="header-anchor-trigger" to="#running-locally">#</doc-anchor-trigger>
-        <span>Running Locally</span>
+        <span>Running Locally <span class="docs-emoji">&#x1F4BB;</span></span>
     </h1>
 </doc-anchor-target>
+<p>Ensure that you have the followings installed before you attempt to run the project in your computer:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th><a href="https://www.docker.com/">Docker </a></th>
+<th>24.0.4, build 3713ee1</th>
+</tr>
+</thead>
+</table>
+</div>
+<ul>
+<li>Note that the reason why docker is used in local development is because of volume bindings.</li>
+</ul>
+<doc-anchor-target id="steps">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#steps">#</doc-anchor-trigger>
+        <span>Steps</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li>Create a folder named <code v-pre>akis-project</code> somewhere in your computer.</li>
+<li>Clone repositories from github
+<ul>
+<li><a href="https://github.com/akis-project/akis-react-app">akis-react-app</a></li>
+<li><a href="https://github.com/akis-project/akis-nodejs-api">akis-nodejs-api</a></li>
+<li><a href="https://github.com/akis-project/akis-flask-api">akis-flask-api</a></li>
+<li><a href="https://github.com/akis-project/docker-compose">docker-compose</a></li>
+</ul>
+</li>
+<li>Switch to respective branches of each repository and pull the latest code:</li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># akis-react-app
+git switch dev
+
+# akis-nodejs-api
+git switch dev
+
+# akis-flask-api
+git switch dev
+
+# docker-compose
+# stay in 'main'</code></pre>
+</doc-codeblock></div>
+<ol start="4">
+<li>Create volumes in project directory (you must be in akis-project folder, at the root)</li>
+</ol>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>Because we are binding local volumes to docker containers, we need to create those volumes manually in the host machine.</p>
+<p>This part is a MUST!</p>
+        </div>
+    </div>
+</div>
+<p>Run the following commands to create directories of volumes:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mkdir volumes
+cd volumes
+mkdir db
+mkdir uploads</code></pre>
+</doc-codeblock></div>
+<p>After this step, make sure you have the following folder structure:
+<figure class="content-center">
+    <img src="../static/folder-structure.png" alt="final folder structure">
+    <figcaption class="caption">final folder structure</figcaption>
+</figure>
+</p>
+<ol start="6">
+<li>Change environment variables</li>
+</ol>
+<p>Run the following commands to change name of environment files and docker compose file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mv .env.dev .env
+mv docker-compose.dev.yml docker-compose.yml
+
+# To see logs:
+docker compose up
+
+# To run in detached mode:
+# docker compose up -d</code></pre>
+</doc-codeblock></div>
+<ol start="7">
+<li>Run the project</li>
+</ol>
 <p>Within only one command, you can start the whole project.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">docker-compose up -d</code></pre>
@@ -236,6 +333,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Running Locally", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Running Locally 💻", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
