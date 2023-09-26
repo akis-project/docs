@@ -77,4 +77,6 @@ docker-compose up -d
 
 !!! info
 The `-d` flag is for running the containers in the background.
+
+To see the logs in interactive mode, remove the `-d` flag.
 !!!
