@@ -15,3 +15,14 @@ There might be some work to do in the future throughout the system. These are:
 - There can be a better authentication and MFA implementation.
 - Users' can have tokens to transcribe images, .i.e. a new user can transcribe max 10 pages. After that, he/she should buy/request tokens to transcribe more.
 - **MONOREPO**, of course handling each repo separately causes so much pain...
+
+## :warning: Known Issues :warning:
+
+- Whenever you update the code of Flask service, you need to do the followings in this order:
+  - `docker-compose down`
+  - `docker image rm akis-flask-api-image`
+  - `docker-compose up`
+
+So that the docker image of Flask will be rebuild with the new code.
+
+:warning: This is really a big issue as it causes loss of time. We should find a way to fix this. Especially for development mode... :warning:
