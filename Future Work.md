@@ -14,3 +14,4 @@ There might be some work to do in the future throughout the system. These are:
 - For local development, we should give up using `docker-compose`. This is because of the volume bindings. We should find a way to bind volumes in local development. Also each time shutting containers, rebuilding service images and running compose again when we change the code ==> **takes freaking time** :boom:!
 - There can be a better authentication and MFA implementation.
 - Users' can have tokens to transcribe images, .i.e. a new user can transcribe max 10 pages. After that, he/she should buy/request tokens to transcribe more.
+- **MONOREPO**, of course handling each repo separately causes so much pain...

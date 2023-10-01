@@ -48,6 +48,7 @@ This part is a MUST!
 Run the following commands to create directories of volumes:
 
 ```sh
+# Make sure you are at the root of the project folder
 mkdir volumes
 cd volumes
 mkdir db
