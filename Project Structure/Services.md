@@ -14,8 +14,8 @@ order: 3
 - Serves UI
 - Communicates with `akis-nodejs-api`
 - Stores cookies for authentication
-- Runs on port 3000 (dev)
-- Runs on port 3001 (prod)
+- Runs on port 3000 (when running in dev)
+- Runs on port 3001 (when running in prod)
 
 +++ akis-nodejs-api
 
@@ -40,7 +40,7 @@ order: 3
 
 - Runs NoSQL database
 - Stores user information, transcription results and login sessions.
-- Runs on port 27017
+- Runs on port 27017 (always)
 
 +++ :warning: akis-proxy (only in production) :warning:
 
@@ -55,7 +55,7 @@ And this will lead `cross-origin cookie` errors which means you won't be able to
 - Utilizes [node-http-proxy](https://www.npmjs.com/package/node-http-proxy) library
 - Receives requests from `demos.sabanciuniv.edu`
 - Forwards requests to host instance's 3001 (react) and 5001 (nodejs) ports
-- Runs on port 3000 (prod)
+- Runs on port 3000 (when running in prod)
 - Why do we need such proxying? _short answer: reverse-proxy of demos_
 
   - All the docker containers are designed to communicate each other using internal docker network.
@@ -72,7 +72,11 @@ And this will lead `cross-origin cookie` errors which means you won't be able to
 
 ### Service Schema
 
-![schema](/static/service-schema.jpg)
+![service schema](/static/service-schema.jpg)
 
 - Those services share volumes and networks between each other.
 - In order to figure out how system works, you need to understand how each service communicates each other.
+
+!!! info
+You can find details of this flow in the [Transcription Workflow](/transcription-workflow) page.
+!!!

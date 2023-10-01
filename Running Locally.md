@@ -1,4 +1,9 @@
-# Running Locally 💻
+---
+icon: device-desktop
+order: 1
+---
+
+# Running Locally
 
 Ensure that you have the followings installed before you attempt to run the project in your computer:
 

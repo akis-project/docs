@@ -1,3 +1,8 @@
+---
+icon: image
+order: 3
+---
+
 # Storage (Static Image Hosting)
 
 - Prior to that, we were storing images (crop images) in [Google Cloud Storage](https://cloud.google.com/storage) and retreiving their `url`s to show in UI.

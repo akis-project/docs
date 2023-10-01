@@ -1,3 +1,7 @@
+---
+icon: home
+---
+
 # Introduction
 
 This is the detailed documentation of Akis Project.

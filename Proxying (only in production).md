@@ -1,3 +1,8 @@
+---
+icon: shield
+order: 5
+---
+
 # Proxying (only in production)
 
 - As stated before, things work different in production mode.

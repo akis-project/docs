@@ -1,3 +1,7 @@
+---
+order: 7
+---
+
 # Project Structure
 
 Akis Project is designed to work as an orchestration of different docker components.
