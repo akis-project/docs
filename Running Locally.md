@@ -12,6 +12,10 @@ Ensure that you have the followings installed before you attempt to run the proj
 
 - Note that the reason why docker is used in local development is because of volume bindings.
 
+!!! info
+Oh, also at least 30 GB free space :skull:
+!!!
+
 ## Steps
 
 1. Create a folder named `akis-project` somewhere in your computer.

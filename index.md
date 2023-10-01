@@ -38,7 +38,7 @@ You can directly contribute to the project by pushing your changes to the reposi
 
 !!!
 Be aware that, `main` branches of repositories needs to be protected. Currently main branches are being served in `vpa-com16` server.
-The changes should be merged into the `develop` branch and then be tested. After a consensus is reached, the changes can be merged into the `main` branch.
+The changes should be merged into the `dev` branch and then be tested. After a consensus is reached, the changes can be merged into the `main` branch.
 Of course, don't forget to refresh the server after the merge and update the documentation!
 !!!
 
