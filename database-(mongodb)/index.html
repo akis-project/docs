@@ -9,32 +9,34 @@
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Services</title>
-    <meta name="title" content="Services">
-    <meta name="description" content="Services are docker containers that runs applications inside. They are the main building blocks of the project.">
+    <title>Databae (MongoDB)</title>
+    <meta name="title" content="Databae (MongoDB)">
+    <meta name="description" content="Database Name: akis">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/project-structure/services/">
+    <link rel="canonical" href="/database-(mongodb)/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/project-structure/services/">
-    <meta property="og:title" content="Services">
-    <meta property="og:description" content="Services are docker containers that runs applications inside. They are the main building blocks of the project.">
+    <meta property="og:url" content="/database-(mongodb)/">
+    <meta property="og:title" content="Databae (MongoDB)">
+    <meta property="og:description" content="Database Name: akis">
+    <meta property="og:image" content="/static/users.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/project-structure/services/">
-    <meta property="twitter:title" content="Services">
-    <meta property="twitter:description" content="Services are docker containers that runs applications inside. They are the main building blocks of the project.">
+    <meta property="twitter:url" content="/database-(mongodb)/">
+    <meta property="twitter:title" content="Databae (MongoDB)">
+    <meta property="twitter:description" content="Database Name: akis">
+    <meta property="twitter:image" content="/static/users.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.749472525644" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.749472525644" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.749472525644" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.749472525644" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749472525644" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749472525644" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -49,7 +51,7 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Akis</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
                     </div>
@@ -149,71 +151,106 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="services" class="break-words">
+<doc-anchor-target id="databae-mongodb" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#services">#</doc-anchor-trigger>
-        <span>Services</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#databae-mongodb">#</doc-anchor-trigger>
+        <span>Databae (MongoDB)</span>
     </h1>
 </doc-anchor-target>
 <ul>
-<li>Services are docker containers that runs applications inside. They are the main building blocks of the project.</li>
-<li>Each application is isolated from others, with its own operating system, dependencies, environment variables, ports, volumes, etc.</li>
+<li>Database Name: <code v-pre>akis</code></li>
+<li>Collections:
+<ul>
+<li><code v-pre>users</code>: user details</li>
+<li><code v-pre>transcriptions</code>: transcription details of each user, text results of each transcription, image paths of each crop</li>
+<li><code v-pre>sessions</code>: session data, used by nodejs-api service</li>
 </ul>
-<doc-anchor-target id="service-definitions">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#service-definitions">#</doc-anchor-trigger>
-        <span>Service definitions</span>
-    </h3>
+</li>
+</ul>
+<doc-anchor-target id="details-of-collection-and-documents">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#details-of-collection-and-documents">#</doc-anchor-trigger>
+        <span>Details of Collection and Documents</span>
+    </h2>
 </doc-anchor-target>
 <doc-tabs>
-<doc-tab v-cloak id="akis-react-app">
-<template #title>akis-react-app</template>
+<doc-tab v-cloak id="users">
+<template #title>users</template>
 <ul>
-<li>Serves UI</li>
-<li>Communicates with <code v-pre>akis-nodejs-api</code></li>
-<li>Stores cookies for authentication</li>
-<li>Runs on port 3000 (dev)</li>
-<li>Runs on port 3001 (prod)</li>
+<li><code v-pre>name</code></li>
+<li><code v-pre>email</code></li>
+<li><code v-pre>password</code> (encrypted)</li>
+<li><code v-pre>noTranscribedPages</code>: to track users how many pages they transcribed</li>
+<li><code v-pre>noTranscribedCrops</code>: to track users how many lines they transcribed</li>
+<li><code v-pre>createdAt</code></li>
 </ul>
+<doc-anchor-target id="what-users-collection-look-like">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#what-users-collection-look-like">#</doc-anchor-trigger>
+        <span>What users collection look like:</span>
+    </h3>
+</doc-anchor-target>
+<p><figure class="content-center">
+    <img src="../static/users.png" alt="users">
+    <figcaption class="caption">users</figcaption>
+</figure>
+</p>
 </doc-tab>
-<doc-tab v-cloak id="akis-nodejs-api">
-<template #title>akis-nodejs-api</template>
+<doc-tab v-cloak id="transcriptions">
+<template #title>transcriptions</template>
 <ul>
-<li>Runs express server</li>
-<li>Runs backend logic</li>
-<li>Communicates with <code v-pre>akis-react-app</code>, <code v-pre>akis-flask-api</code>, and <code v-pre>mongo</code></li>
-<li>Sets cookie in the <code v-pre>akis-react-app</code> after a successful login</li>
-<li>Hosts images statically to <code v-pre>akis-react-app</code></li>
-<li>Shares volume between <code v-pre>akis-flask-api</code></li>
-<li>Runs on port 5001 (always)</li>
-</ul>
-</doc-tab>
-<doc-tab v-cloak id="akis-flask-api">
-<template #title>akis-flask-api</template>
+<li><code v-pre>date</code></li>
+<li><code v-pre>userId</code></li>
+<li><code v-pre>userEmail</code></li>
+<li><code v-pre>sourceImageUrl</code>: path to the source image which is stored in storage</li>
+<li><code v-pre>segments</code>: array of segments (lines)
 <ul>
-<li>Runs flask server</li>
-<li>Runs machine learning model</li>
-<li>Gets image from <code v-pre>akis-nodejs-api</code> and returns back transcription results</li>
-<li>Saves images and crops to local directory of host instance</li>
-<li>Shares volume with <code v-pre>akis-nodejs-api</code></li>
-<li>Runs on port 5000 (always)</li>
-</ul>
-</doc-tab>
-<doc-tab v-cloak id="mongo">
-<template #title>mongo</template>
+<li>a <code v-pre>segment</code> is made of:
 <ul>
-<li>Runs NoSQL database</li>
-<li>Stores user information, transcription results and login sessions.</li>
-<li>Runs on port 27017</li>
+<li><code v-pre>id</code></li>
+<li><code v-pre>text</code>: Turkih transcription of the segment</li>
+<li><code v-pre>imageURL</code>: path to the cropped image which is stored in storage</li>
+<li><img src="../static/transcriptions-detailed.png" alt="transcriptions-detailed" /></li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="what-transcriptions-collection-look-like">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#what-transcriptions-collection-look-like">#</doc-anchor-trigger>
+        <span>What transcriptions collection look like:</span>
+    </h3>
+</doc-anchor-target>
+<p><figure class="content-center">
+    <img src="../static/transcriptions.png" alt="transcriptions">
+    <figcaption class="caption">transcriptions</figcaption>
+</figure>
+</p>
 </doc-tab>
-<doc-tab v-cloak id="akis-proxy-only-in-production">
-<template #title><span class="docs-emoji">&#x26A0;&#xFE0F;</span> akis-proxy (only in production) <span class="docs-emoji">&#x26A0;&#xFE0F;</span></template>
+<doc-tab v-cloak id="sessions">
+<template #title>sessions</template>
+<p>Nothing fancy, just some session data.</p>
+</doc-tab>
+</doc-tabs>
+<doc-anchor-target id="how-to-access-mongodb">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-access-mongodb">#</doc-anchor-trigger>
+        <span>How to access MongoDB</span>
+    </h2>
+</doc-anchor-target>
+<p>You can connect to the database using any GUI or CLI client tools. I recommend <a href="https://www.mongodb.com/products/compass">MongoDB Compass</a> for GUI and <a href="https://docs.mongodb.com/manual/mongo/">MongoDB Shell</a> for CLI. But there are some other alternatives like <a href="https://mingo.io/">Mingo</a> or <a href="https://studio3t.com/">Studio3T</a>.</p>
+<p>You can enter <code v-pre>nodejs_user</code> credentials to connect to the database.
+<figure class="content-center">
+    <img src="../static/mongo-how-to-connect.png" alt="How to connect">
+    <figcaption class="caption">How to connect</figcaption>
+</figure>
+</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
                     <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
                     <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
@@ -222,55 +259,10 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>This service is only used in production environment.
-It is necessary to proxy requests from <code v-pre>demos.sabanciuniv.edu</code> to the host instance (<code v-pre>vpa-com16</code>).
-Otherwise the host instance will not be able to receive requests from outside. Thus, nodejs api won&#x27;t be able to set cookies in react application.
-And this will lead <code v-pre>cross-origin cookie</code> errors which means you won&#x27;t be able to login.</p>
+<p>Get the <code v-pre>password</code> from envionment variables.</p>
         </div>
     </div>
 </div>
-<ul>
-<li><p>Proxy layer between <code v-pre>demos.sabanciuniv.edu</code> and host instance (<code v-pre>vpa-com16</code>).</p>
-</li>
-<li><p>Utilizes <a href="https://www.npmjs.com/package/node-http-proxy">node-http-proxy</a> library</p>
-</li>
-<li><p>Receives requests from <code v-pre>demos.sabanciuniv.edu</code></p>
-</li>
-<li><p>Forwards requests to host instance&#x27;s 3001 (react) and 5001 (nodejs) ports</p>
-</li>
-<li><p>Runs on port 3000 (prod)</p>
-</li>
-<li><p>Why do we need such proxying? <em>short answer: reverse-proxy of demos</em></p>
-<ul>
-<li>All the docker containers are designed to communicate each other using internal docker network.</li>
-<li><code v-pre>akis-react-app</code> is the frontend service, it will store session cookies on the browser</li>
-<li><code v-pre>akis-nodejs-api</code> is the backend service which stores session, i.e. it is cookie-setter of the frontend</li>
-<li>And there is a <em>reverse-proxy</em> configured in <code v-pre>demos.sabanciuniv.edu</code>&#x27;s machine, which forwards HTTPS(443) requests to <code v-pre>vpa-com16</code>&#x27;s 3000 port.</li>
-<li>But by its nature, backend service is designed to set cookies in frontend, which is bundled and delivered to the client&#x27;s browser.</li>
-<li>So, because of this reverse-proxying of <code v-pre>demos.sabanciuniv.edu</code>, the client should be <code v-pre>demos.sabanciuniv.edu</code> instead of <code v-pre>vpa-com16</code>&#x27;s <code v-pre>react-app</code> service.</li>
-<li>To achieve this api &amp; client interaction, we a proxy service which will forwards requests from <code v-pre>demos.sabanciuniv.edu</code> to <code v-pre>vpa-com16</code>&#x27;s front and backend services.</li>
-<li>In the end, backend service will assume that incoming request is actually coming from <code v-pre>demos</code> even though it is designed to receive requests from <code v-pre>vpa-com16</code>&#x27;s 3000 port. Then it will set cookies in <code v-pre>demos</code> successfully <span class="docs-emoji">&#x2705;</span></li>
-<li>If we didn&#x27;t have this akis-proxy service, users who visit <code v-pre>demos</code> wouldn&#x27;t be able to sign-in even though their credentials were true. This is because of <a href="https://medium.com/@sharadokey/understanding-cors-and-cross-origin-cookies-bf36d624da78">cross-origin cookies</a>.</li>
-</ul>
-</li>
-</ul>
-</doc-tab>
-</doc-tabs>
-<doc-anchor-target id="service-schema">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#service-schema">#</doc-anchor-trigger>
-        <span>Service Schema</span>
-    </h3>
-</doc-anchor-target>
-<p><figure class="content-center">
-    <img src="/static/service-schema.jpg" alt="schema">
-    <figcaption class="caption">schema</figcaption>
-</figure>
-</p>
-<ul>
-<li>Those services share volumes and networks between each other.</li>
-<li>In order to figure out how system works, you need to understand how each service communicates each other.</li>
-</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -280,20 +272,20 @@ And this will lead <code v-pre>cross-origin cookie</code> errors which means you
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../project-structure/docker-compose/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../project-structure/networks/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Docker Compose</span>
+                                                <span class="block mt-1">Networks</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../project-structure/volumes/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../environment-variables/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Volumes</span>
+                                                <span class="block mt-1">Environment Variables</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -337,6 +329,6 @@ And this will lead <code v-pre>cross-origin cookie</code> errors which means you
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Services", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Databae (MongoDB)", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
