@@ -1,4 +1,4 @@
-# Databae (MongoDB)
+# Database (MongoDB)
 
 - Database Name: `akis`
 - Collections:
@@ -40,7 +40,7 @@
 Nothing fancy, just some session data.
 +++
 
-## How to access MongoDB
+## How to access MongoDB from outside
 
 You can connect to the database using any GUI or CLI client tools. I recommend [MongoDB Compass](https://www.mongodb.com/products/compass) for GUI and [MongoDB Shell](https://docs.mongodb.com/manual/mongo/) for CLI. But there are some other alternatives like [Mingo](https://mingo.io/) or [Studio3T](https://studio3t.com/).
 
