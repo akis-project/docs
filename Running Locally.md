@@ -25,9 +25,11 @@ Ensure that you have the followings installed before you attempt to run the proj
 ```sh
 # akis-react-app
 git switch dev
+npm install
 
 # akis-nodejs-api
 git switch dev
+npm install
 
 # akis-flask-api
 git switch dev
@@ -63,14 +65,9 @@ After this step, make sure you have the following folder structure:
 Run the following commands to change name of environment files and docker compose file:
 
 ```sh
-mv .env.dev .env
-mv docker-compose.dev.yml docker-compose.yml
+cat .env.dev > .env
+cat docker-compose.dev.yml > docker-compose.yml
 
-# To see logs:
-docker compose up
-
-# To run in detached mode:
-# docker compose up -d
 ```
 
 7. Run the project
