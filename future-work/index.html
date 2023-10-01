@@ -9,26 +9,24 @@
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Database (MongoDB)</title>
-    <meta name="title" content="Database (MongoDB)">
-    <meta name="description" content="Database Name: akis">
+    <title>Future Work</title>
+    <meta name="title" content="Future Work">
+    <meta name="description" content="There might be some work to do in the future throughout the system. These are:">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/database-(mongodb)/">
+    <link rel="canonical" href="/future-work/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/database-(mongodb)/">
-    <meta property="og:title" content="Database (MongoDB)">
-    <meta property="og:description" content="Database Name: akis">
-    <meta property="og:image" content="/static/users.png">
+    <meta property="og:url" content="/future-work/">
+    <meta property="og:title" content="Future Work">
+    <meta property="og:description" content="There might be some work to do in the future throughout the system. These are:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/database-(mongodb)/">
-    <meta property="twitter:title" content="Database (MongoDB)">
-    <meta property="twitter:description" content="Database Name: akis">
-    <meta property="twitter:image" content="/static/users.png">
+    <meta property="twitter:url" content="/future-work/">
+    <meta property="twitter:title" content="Future Work">
+    <meta property="twitter:description" content="There might be some work to do in the future throughout the system. These are:">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -151,118 +149,22 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="database-mongodb" class="break-words">
+<doc-anchor-target id="future-work" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#database-mongodb">#</doc-anchor-trigger>
-        <span>Database (MongoDB)</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#future-work">#</doc-anchor-trigger>
+        <span>Future Work</span>
     </h1>
 </doc-anchor-target>
+<p>There might be some work to do in the future throughout the system. These are:</p>
 <ul>
-<li>Database Name: <code v-pre>akis</code></li>
-<li>Collections:
-<ul>
-<li><code v-pre>users</code>: user details</li>
-<li><code v-pre>transcriptions</code>: transcription details of each user, text results of each transcription, image paths of each crop</li>
-<li><code v-pre>sessions</code>: session data, used by nodejs-api service</li>
+<li>If we cancel <code v-pre>demos.sabanciuniv.edu</code> reverse-proxying, there should be a <code v-pre>nginx</code> or <code v-pre>apache</code> configuration in <code v-pre>vpa-com16</code> and SSL certification.</li>
+<li>React can be served by <code v-pre>nginx</code> or <code v-pre>apache</code> using their pre-built docker images.</li>
+<li>Storage should be cleaned periodically for the sake of data privacy and protection. (<code v-pre>/uploads</code> volume)</li>
+<li>There might be some security issues in the system. These should be investigated and fixed.</li>
+<li>For local development, we should give up using <code v-pre>docker-compose</code>. This is because of the volume bindings. We should find a way to bind volumes in local development. Also each time shutting containers, rebuilding service images and running compose again when we change the code ==&gt; <strong>takes freaking time</strong> <span class="docs-emoji">&#x1F4A5;</span>!</li>
+<li>There can be a better authentication and MFA implementation.</li>
+<li>Users&#x27; can have tokens to transcribe images, .i.e. a new user can transcribe max 10 pages. After that, he/she should buy/request tokens to transcribe more.</li>
 </ul>
-</li>
-</ul>
-<doc-anchor-target id="details-of-collection-and-documents">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#details-of-collection-and-documents">#</doc-anchor-trigger>
-        <span>Details of Collection and Documents</span>
-    </h2>
-</doc-anchor-target>
-<doc-tabs>
-<doc-tab v-cloak id="users">
-<template #title>users</template>
-<ul>
-<li><code v-pre>name</code></li>
-<li><code v-pre>email</code></li>
-<li><code v-pre>password</code> (encrypted)</li>
-<li><code v-pre>noTranscribedPages</code>: to track users how many pages they transcribed</li>
-<li><code v-pre>noTranscribedCrops</code>: to track users how many lines they transcribed</li>
-<li><code v-pre>createdAt</code></li>
-</ul>
-<doc-anchor-target id="what-users-collection-look-like">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#what-users-collection-look-like">#</doc-anchor-trigger>
-        <span>What users collection look like:</span>
-    </h3>
-</doc-anchor-target>
-<p><figure class="content-center">
-    <img src="../static/users.png" alt="users">
-    <figcaption class="caption">users</figcaption>
-</figure>
-</p>
-</doc-tab>
-<doc-tab v-cloak id="transcriptions">
-<template #title>transcriptions</template>
-<ul>
-<li><code v-pre>date</code></li>
-<li><code v-pre>userId</code></li>
-<li><code v-pre>userEmail</code></li>
-<li><code v-pre>sourceImageUrl</code>: path to the source image which is stored in storage</li>
-<li><code v-pre>segments</code>: array of segments (lines)
-<ul>
-<li>a <code v-pre>segment</code> is made of:
-<ul>
-<li><code v-pre>id</code></li>
-<li><code v-pre>text</code>: Turkih transcription of the segment</li>
-<li><code v-pre>imageURL</code>: path to the cropped image which is stored in storage</li>
-<li><img src="../static/transcriptions-detailed.png" alt="transcriptions-detailed" /></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<doc-anchor-target id="what-transcriptions-collection-look-like">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#what-transcriptions-collection-look-like">#</doc-anchor-trigger>
-        <span>What transcriptions collection look like:</span>
-    </h3>
-</doc-anchor-target>
-<p><figure class="content-center">
-    <img src="../static/transcriptions.png" alt="transcriptions">
-    <figcaption class="caption">transcriptions</figcaption>
-</figure>
-</p>
-</doc-tab>
-<doc-tab v-cloak id="sessions">
-<template #title>sessions</template>
-<p>Nothing fancy, just some session data.</p>
-</doc-tab>
-</doc-tabs>
-<doc-anchor-target id="how-to-access-mongodb-from-outside">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-access-mongodb-from-outside">#</doc-anchor-trigger>
-        <span>How to access MongoDB from outside</span>
-    </h2>
-</doc-anchor-target>
-<p>You can connect to the database using any GUI or CLI client tools. I recommend <a href="https://www.mongodb.com/products/compass">MongoDB Compass</a> for GUI and <a href="https://docs.mongodb.com/manual/mongo/">MongoDB Shell</a> for CLI. But there are some other alternatives like <a href="https://mingo.io/">Mingo</a> or <a href="https://studio3t.com/">Studio3T</a>.</p>
-<p>You can enter <code v-pre>nodejs_user</code> credentials to connect to the database.
-<figure class="content-center">
-    <img src="../static/mongo-how-to-connect.png" alt="How to connect">
-    <figcaption class="caption">How to connect</figcaption>
-</figure>
-</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>Get the <code v-pre>password</code> from envionment variables.</p>
-        </div>
-    </div>
-</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -272,23 +174,16 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../proxying-(only-in-production)/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../ml-model/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Proxying (only in production)</span>
+                                                <span class="block mt-1">ML Model</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../storage-(static-image-hosting)/">
-                                            <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Storage (Static Image Hosting)</span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                        </a>
                                     </div>
                                 </nav>
                             </footer>
@@ -329,6 +224,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Database (MongoDB)", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Future Work", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
