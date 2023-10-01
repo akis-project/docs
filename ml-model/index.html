@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Environment Variables</title>
-    <meta name="title" content="Environment Variables">
-    <meta name="description" content="All environment varibles of services are provided by docker-compose.yml file.">
+    <title>ML Model</title>
+    <meta name="title" content="ML Model">
+    <meta name="description" content="There is already a prepared documentation for the model. You can find it here">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/environment-variables/">
+    <link rel="canonical" href="/ml-model/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/environment-variables/">
-    <meta property="og:title" content="Environment Variables">
-    <meta property="og:description" content="All environment varibles of services are provided by docker-compose.yml file.">
+    <meta property="og:url" content="/ml-model/">
+    <meta property="og:title" content="ML Model">
+    <meta property="og:description" content="There is already a prepared documentation for the model. You can find it here">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/environment-variables/">
-    <meta property="twitter:title" content="Environment Variables">
-    <meta property="twitter:description" content="All environment varibles of services are provided by docker-compose.yml file.">
+    <meta property="twitter:url" content="/ml-model/">
+    <meta property="twitter:title" content="ML Model">
+    <meta property="twitter:description" content="There is already a prepared documentation for the model. You can find it here">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -149,188 +149,13 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="environment-variables" class="break-words">
+<doc-anchor-target id="ml-model" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#environment-variables">#</doc-anchor-trigger>
-        <span>Environment Variables</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ml-model">#</doc-anchor-trigger>
+        <span>ML Model</span>
     </h1>
 </doc-anchor-target>
-<p>All environment varibles of services are provided by <code v-pre>docker-compose.yml</code> file.</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p><code v-pre>docker.compose.yml</code> also get variables from <code v-pre>.env</code> file</p>
-        </div>
-    </div>
-</div>
-<doc-anchor-target id="list-of-environment-variables-in-env-and-where-they-are-used">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#list-of-environment-variables-in-env-and-where-they-are-used">#</doc-anchor-trigger>
-        <span>List of Environment Variables in <code v-pre>.env</code> and Where They Are Used</span>
-    </h3>
-</doc-anchor-target>
-<doc-tabs>
-<doc-tab v-cloak id="prod">
-<template #title>Prod</template>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: center;">react-app</th>
-<th style="text-align: center;">nodejs-api</th>
-<th style="text-align: center;">flask-api</th>
-<th style="text-align: center;">mongodb</th>
-<th style="text-align: center;">proxy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>NODE_ENV</td>
-<td style="text-align: left;">Determines <code v-pre>production</code> or <code v-pre>development</code> environment</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>DOCKER_EXTERNAL_IP</td>
-<td style="text-align: left;">Value of Host machine&#x27;s IP address. <code v-pre>localhost</code> or <code v-pre>127.0.0.1</code> in development. vpa-com16&#x27;s IP address in production</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_DATABASE_NAME</td>
-<td style="text-align: left;">mongodb database name</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_ROOT_USERNAME</td>
-<td style="text-align: left;">mongodb root username</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_ROOT_PASSWORD</td>
-<td style="text-align: left;">mongodb root password</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_NODEJS_USERNAME</td>
-<td style="text-align: left;">mongodb username for connecting nodejs</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_NODEJS_PASSWORD</td>
-<td style="text-align: left;">mongodb password for connecting nodejs</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>SESSION_SECRET</td>
-<td style="text-align: left;">session secret of nodejs</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>REACT_APP_PORT</td>
-<td style="text-align: left;">port on which react is running</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-<tr>
-<td>NODEJS_API_PORT</td>
-<td style="text-align: left;">port on which nodejs is running</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-<tr>
-<td>FLASK_API_PORT</td>
-<td style="text-align: left;">port on which flask is running</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_PORT</td>
-<td style="text-align: left;">port on which mongodb is running</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>REVERSE_PROXY_HOST <span class="docs-emoji">&#x26A0;&#xFE0F;</span></td>
-<td style="text-align: left;"><code v-pre>https://demos.sabanciuniv.edu</code> currently...</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-<tr>
-<td>PROXY_PORT <span class="docs-emoji">&#x26A0;&#xFE0F;</span></td>
-<td style="text-align: left;">port on which proxy service is running</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</doc-tab>
-<doc-tab v-cloak id="dev">
-<template #title>Dev</template>
-<p>Everything is same except <code v-pre>REVERSE_PROXY_HOST</code> is <code v-pre>PROXY_PORT</code>. Those are only used in production.</p>
-</doc-tab>
-</doc-tabs>
+<p>There is already a prepared documentation for the model. You can find it <a href="https://docs.google.com/document/d/1yf74GaW-vWm0Ymf6S8BHfET4bWC-2ASb/edit">here</a></p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -340,23 +165,16 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../project-structure/networks/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../running-locally/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Networks</span>
+                                                <span class="block mt-1">Running Locally</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../proxying-(only-in-production)/">
-                                            <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Proxying (only in production)</span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                        </a>
                                     </div>
                                 </nav>
                             </footer>
@@ -397,6 +215,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Environment Variables", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "ML Model", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

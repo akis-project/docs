@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749495020301">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749496384707">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -30,11 +30,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.749495020301" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.749496384707" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.749495020301" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.749496384707" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.749495020301" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.749496384707" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -172,8 +172,8 @@
 <li>Serves UI</li>
 <li>Communicates with <code v-pre>akis-nodejs-api</code></li>
 <li>Stores cookies for authentication</li>
-<li>Runs on port 3000 (dev)</li>
-<li>Runs on port 3001 (prod)</li>
+<li>Runs on port 3000 (when running in dev)</li>
+<li>Runs on port 3001 (when running in prod)</li>
 </ul>
 </doc-tab>
 <doc-tab v-cloak id="akis-nodejs-api">
@@ -204,7 +204,7 @@
 <ul>
 <li>Runs NoSQL database</li>
 <li>Stores user information, transcription results and login sessions.</li>
-<li>Runs on port 27017</li>
+<li>Runs on port 27017 (always)</li>
 </ul>
 </doc-tab>
 <doc-tab v-cloak id="akis-proxy-only-in-production">
@@ -238,7 +238,7 @@ And this will lead <code v-pre>cross-origin cookie</code> errors which means you
 </li>
 <li><p>Forwards requests to host instance&#x27;s 3001 (react) and 5001 (nodejs) ports</p>
 </li>
-<li><p>Runs on port 3000 (prod)</p>
+<li><p>Runs on port 3000 (when running in prod)</p>
 </li>
 <li><p>Why do we need such proxying? <em>short answer: reverse-proxy of demos</em></p>
 <ul>
@@ -263,14 +263,31 @@ And this will lead <code v-pre>cross-origin cookie</code> errors which means you
     </h3>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="/static/service-schema.jpg" alt="schema">
-    <figcaption class="caption">schema</figcaption>
+    <img src="/static/service-schema.jpg" alt="service schema">
+    <figcaption class="caption">service schema</figcaption>
 </figure>
 </p>
 <ul>
 <li>Those services share volumes and networks between each other.</li>
 <li>In order to figure out how system works, you need to understand how each service communicates each other.</li>
 </ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>You can find details of this flow in the <a href="/transcription-workflow">Transcription Workflow</a> page.</p>
+        </div>
+    </div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
