@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749472525644">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749495020301">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -11,6 +11,7 @@
     <!-- Primary Meta Tags -->
     <title>Storage (Static Image Hosting)</title>
     <meta name="title" content="Storage (Static Image Hosting)">
+    <meta name="description" content="Prior to that, we were storing images (crop images) in Google Cloud Storage and retreiving their url s to show in UI.">
 
     <!-- Canonical -->
     <link rel="canonical" href="/storage-(static-image-hosting)/">
@@ -19,19 +20,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="/storage-(static-image-hosting)/">
     <meta property="og:title" content="Storage (Static Image Hosting)">
+    <meta property="og:description" content="Prior to that, we were storing images (crop images) in Google Cloud Storage and retreiving their url s to show in UI.">
+    <meta property="og:image" content="/static/storage-detailed.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="/storage-(static-image-hosting)/">
     <meta property="twitter:title" content="Storage (Static Image Hosting)">
+    <meta property="twitter:description" content="Prior to that, we were storing images (crop images) in Google Cloud Storage and retreiving their url s to show in UI.">
+    <meta property="twitter:image" content="/static/storage-detailed.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.749472525644" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.749495020301" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749472525644" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749495020301" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749472525644" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749495020301" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.749495020301" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -152,6 +158,89 @@
         <span>Storage (Static Image Hosting)</span>
     </h1>
 </doc-anchor-target>
+<ul>
+<li>Prior to that, we were storing images (crop images) in <a href="https://cloud.google.com/storage">Google Cloud Storage</a> and retreiving their <code v-pre>url</code>s to show in UI.</li>
+<li>But now, we are hosting images in <code v-pre>vpa-com16</code> standalone server.</li>
+<li>This brings us speed and simplicity. No network latency, no credit card payment for extra storage.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>We keep and serve crop images in <code v-pre>volumes/uploads/</code> directory in <code v-pre>vpa-com16</code> server.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="storage-structure">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#storage-structure">#</doc-anchor-trigger>
+        <span>Storage Structure</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Each user has its own directory in <code v-pre>volumes/uploads/</code> directory.</li>
+<li>Each transcription is kept under its user&#x27;s directory.</li>
+<li>Each transcription has:
+<ul>
+<li>source image</li>
+<li><code v-pre>crops/</code> directory (to keep black/white crop images)</li>
+<li><code v-pre>crops_colored/</code> directory (to keep colored crop images and serve to UI)</li>
+</ul>
+</li>
+</ul>
+<p><figure class="content-center">
+    <img src="../static/storage-detailed.png" alt="storage structure">
+    <figcaption class="caption">storage structure</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="nodejs-service-hosting-images-statically">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#nodejs-service-hosting-images-statically">#</doc-anchor-trigger>
+        <span>Nodejs Service Hosting Images Statically</span>
+    </h3>
+</doc-anchor-target>
+<p>As told before, <code v-pre>akis-nodejs-api</code> service is hosting images statically. It is serving images from <code v-pre>volumes/uploads/</code> directory.</p>
+<ul>
+<li><p>UI can access those images by making API calls to the <code v-pre>akis-nodejs-api</code> service.</p>
+<ul>
+<li>e.g. if you are running the project in your local:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">    GET http://localhost:5001/uploads/64e51ff975dd3c4a7b7546c0/imageTest1-22a908ca598541a2a9157edfa5cd849c-1692739212/crops_colored/imageTest1-001-0061-1057-0000-0176.jpg
+</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>e.g. if you are running the project in the vpa-com16 server:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">    GET https://demos.sabanciuniv.edu/api/uploads/64e51ff975dd3c4a7b7546c0/imageTest1-22a908ca598541a2a9157edfa5cd849c-1692739212/crops_colored/imageTest1-001-0061-1057-0000-0176.jpg</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Respective code of <code v-pre>akis-react-app</code>:
+<img src="../static/prepareimageurl.png" alt="prepareImageUrl function in react-akis-app" />
+<code v-pre>url</code> comes from API call, i.e. POST <code v-pre>akis-nodejs-api/predict</code></p>
+</li>
+</ul>
+<doc-anchor-target id="which-services-interact-with-uploads-volume">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#which-services-interact-with-uploads-volume">#</doc-anchor-trigger>
+        <span>Which services interact with /uploads volume?</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>akis-nodejs-api</code>: to read crop image and serve it to UI</li>
+<li><code v-pre>akis-flask-api</code>: to save crop image, read from it, process it, and send the text result <code v-pre>akis-nodejs-api</code></li>
+</ul>
+<p><span class="docs-emoji">&#x1F449;</span><span class="docs-emoji">&#x1F449;</span><span class="docs-emoji">&#x1F449;</span> You can better understand how these services interact with <code v-pre>/uploads</code> volume in <a href="/transcription-workflow">Transcription Workflow</a> page.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -161,7 +250,7 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../running-locally/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../running-locally/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
@@ -171,6 +260,13 @@
                                     </div>
                             
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../transcription-workflow/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Transcription Workflow</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
                                     </div>
                                 </nav>
                             </footer>
@@ -211,6 +307,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Storage (Static Image Hosting)", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Storage (Static Image Hosting)", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

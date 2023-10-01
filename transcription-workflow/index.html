@@ -9,24 +9,26 @@
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>Environment Variables</title>
-    <meta name="title" content="Environment Variables">
-    <meta name="description" content="All environment varibles of services are provided by docker-compose.yml file.">
+    <title>Transcription Workflow</title>
+    <meta name="title" content="Transcription Workflow">
+    <meta name="description" content="When a user submits an image, the following workflow is triggered:">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/environment-variables/">
+    <link rel="canonical" href="/transcription-workflow/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/environment-variables/">
-    <meta property="og:title" content="Environment Variables">
-    <meta property="og:description" content="All environment varibles of services are provided by docker-compose.yml file.">
+    <meta property="og:url" content="/transcription-workflow/">
+    <meta property="og:title" content="Transcription Workflow">
+    <meta property="og:description" content="When a user submits an image, the following workflow is triggered:">
+    <meta property="og:image" content="/static/workflow.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/environment-variables/">
-    <meta property="twitter:title" content="Environment Variables">
-    <meta property="twitter:description" content="All environment varibles of services are provided by docker-compose.yml file.">
+    <meta property="twitter:url" content="/transcription-workflow/">
+    <meta property="twitter:title" content="Transcription Workflow">
+    <meta property="twitter:description" content="When a user submits an image, the following workflow is triggered:">
+    <meta property="twitter:image" content="/static/workflow.jpg">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -35,6 +37,7 @@
     <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749495020301" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
     <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749495020301" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.749495020301" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -149,13 +152,89 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="environment-variables" class="break-words">
+<doc-anchor-target id="transcription-workflow" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#environment-variables">#</doc-anchor-trigger>
-        <span>Environment Variables</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#transcription-workflow">#</doc-anchor-trigger>
+        <span>Transcription Workflow</span>
     </h1>
 </doc-anchor-target>
-<p>All environment varibles of services are provided by <code v-pre>docker-compose.yml</code> file.</p>
+<doc-anchor-target id="schema-below-the-page">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#schema-below-the-page">#</doc-anchor-trigger>
+        <span>Schema BELOW the Page<span class="docs-emoji">&#x1F447;</span></span>
+    </h3>
+</doc-anchor-target>
+<p>When a user submits an image, the following workflow is triggered:</p>
+<ol>
+<li><p>Client makes POST API call to /predict endpoint of Nodejs service.</p>
+<ul>
+<li>It sends the image as <code v-pre>multipart/form-data</code> in the body of the request.</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const response = await axios.post(`${URL}/api/predict`, formData, {
+  headers: {
+    &quot;Content-Type&quot;: &quot;multipart/form-data&quot;,
+  },
+  withCredentials: true,
+});</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>Nodejs service forwards the incoming image to Flask service.</p>
+<ul>
+<li>It makes a POST API call to /predict endpoint of Flask service.</li>
+<li>Sends imageFile and userId within the body</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const response = await axios.post(
+  `http://${FLASK_API_BASE_URL}:${FLASK_API_PORT}/predict`,
+  {
+    imageFile: imageFile,
+    userId: user._id,
+  }
+);</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>Flask service processes image using ML model.</p>
+<ul>
+<li>It splits image into crops.</li>
+<li>Then extracts texts from each crops.</li>
+</ul>
+</li>
+<li><p>Flask service saves crop images to /uploads volume.</p>
+<ul>
+<li>It saves black/white crop images to <code v-pre>/uploads/${userId}/.../crops/</code></li>
+<li>It saves colored crop images to <code v-pre>/uploads/${userId}/.../crops_colored/</code></li>
+</ul>
+</li>
+<li><p>Flask service sends text results and image paths back to Nodejs service.</p>
+<ul>
+<li><p>With the following HTTP response format:</p>
+<ul>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-python"><code v-pre class="language-python"># Predict
+segment_filenames, results = inference.predict()
+
+response = {
+     &quot;sourceImageUrl&quot;: f&quot;{user_id}/{source_image_folder_name}/{filename}&quot;,
+     &quot;segments&quot;: [
+         {
+             &quot;id&quot;: i,
+             &quot;imageUrl&quot;: f&quot;{user_id}/{source_image_folder_name}/crops_colored/{segment_filenames[i]}&quot;,
+             &quot;text&quot;: results[i]
+         }
+         for i in range(len(segment_filenames))
+     ]
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -169,168 +248,50 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p><code v-pre>docker.compose.yml</code> also get variables from <code v-pre>.env</code> file</p>
+<p>Notice the for loop. Flask will return multple texts with image paths to Nodejs service.</p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="list-of-environment-variables-in-env-and-where-they-are-used">
+</li>
+<li><p>Nodejs service saves texts and image paths to MongoDB, under <code v-pre>transactions</code> collection.</p>
+<ul>
+<li>So that we can keep track of users&#x27; transcriptions, i.e. how many images they have submitted, what are the texts they have extracted, etc.</li>
+</ul>
+</li>
+<li><p>Nodejs service sends texts and image paths to the client UI.</p>
+</li>
+<li><p>Client then retrieves all imagess by sending GET <code v-pre>/uploads/...</code> API call Nodejs service.</p>
+<ul>
+<li>It sends userId within the body of the request.</li>
+<li>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const response = await axios.get(`${URL}/api/uploads`, {
+  data: {
+    userId: user._id,
+  },
+  withCredentials: true,
+});</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>Nodejs service returns static images back to client.</p>
+<ul>
+<li>UI will show images on screen <span class="docs-emoji">&#x1F389;</span></li>
+</ul>
+</li>
+</ol>
+<doc-anchor-target id="schema">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#list-of-environment-variables-in-env-and-where-they-are-used">#</doc-anchor-trigger>
-        <span>List of Environment Variables in <code v-pre>.env</code> and Where They Are Used</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#schema">#</doc-anchor-trigger>
+        <span>Schema</span>
     </h3>
 </doc-anchor-target>
-<doc-tabs>
-<doc-tab v-cloak id="prod">
-<template #title>Prod</template>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: center;">react-app</th>
-<th style="text-align: center;">nodejs-api</th>
-<th style="text-align: center;">flask-api</th>
-<th style="text-align: center;">mongodb</th>
-<th style="text-align: center;">proxy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>NODE_ENV</td>
-<td style="text-align: left;">Determines <code v-pre>production</code> or <code v-pre>development</code> environment</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>DOCKER_EXTERNAL_IP</td>
-<td style="text-align: left;">Value of Host machine&#x27;s IP address. <code v-pre>localhost</code> or <code v-pre>127.0.0.1</code> in development. vpa-com16&#x27;s IP address in production</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_DATABASE_NAME</td>
-<td style="text-align: left;">mongodb database name</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_ROOT_USERNAME</td>
-<td style="text-align: left;">mongodb root username</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_ROOT_PASSWORD</td>
-<td style="text-align: left;">mongodb root password</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_NODEJS_USERNAME</td>
-<td style="text-align: left;">mongodb username for connecting nodejs</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_NODEJS_PASSWORD</td>
-<td style="text-align: left;">mongodb password for connecting nodejs</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>SESSION_SECRET</td>
-<td style="text-align: left;">session secret of nodejs</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>REACT_APP_PORT</td>
-<td style="text-align: left;">port on which react is running</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-<tr>
-<td>NODEJS_API_PORT</td>
-<td style="text-align: left;">port on which nodejs is running</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-<tr>
-<td>FLASK_API_PORT</td>
-<td style="text-align: left;">port on which flask is running</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>MONGODB_PORT</td>
-<td style="text-align: left;">port on which mongodb is running</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td>REVERSE_PROXY_HOST <span class="docs-emoji">&#x26A0;&#xFE0F;</span></td>
-<td style="text-align: left;"><code v-pre>https://demos.sabanciuniv.edu</code> currently...</td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-<tr>
-<td>PROXY_PORT <span class="docs-emoji">&#x26A0;&#xFE0F;</span></td>
-<td style="text-align: left;">port on which proxy service is running</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="docs-emoji">&#x2705;</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</doc-tab>
-<doc-tab v-cloak id="dev">
-<template #title>Dev</template>
-<p>Everything is same except <code v-pre>REVERSE_PROXY_HOST</code> is <code v-pre>PROXY_PORT</code>. Those are only used in production.</p>
-</doc-tab>
-</doc-tabs>
+<p><figure class="content-center">
+    <img src="../static/workflow.jpg" alt="transcription workflow">
+    <figcaption class="caption">transcription workflow</figcaption>
+</figure>
+</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -340,23 +301,16 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../database-(mongodb)/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../storage-(static-image-hosting)/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Database (Mongo​DB)</span>
+                                                <span class="block mt-1">Storage (Static Image Hosting)</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../proxying-(only-in-production)/">
-                                            <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Proxying (only in production)</span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                        </a>
                                     </div>
                                 </nav>
                             </footer>
@@ -397,6 +351,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Environment Variables", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Transcription Workflow", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
