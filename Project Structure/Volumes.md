@@ -9,6 +9,10 @@ order: 2
 - Since the data inside the volumes are persistent, any damage or restart to the containers will not affect the data inside the volumes.
 - Even if you delete the containers, the data inside the volumes will not be deleted.
 
+!!! info
+All volumes are kept inside `volumes/` directory in host machine.
+!!!
+
 ### Volume definitions
 
 +++ db/
@@ -29,6 +33,10 @@ order: 2
         device: "../volumes/db"
 
 ```
+
+!!! info
+For detailed information about MongoDB, see [Database (MongoDB)](<../../database-(mongodb)>).
+!!!
 
 +++ uploads/
 
@@ -51,7 +59,3 @@ order: 2
 ```
 
 +++
-
-!!! info
-Volumes are kept inside `volumes/` directory in host machine.
-!!!
