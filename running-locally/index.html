@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749510323082">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.752241297080">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -32,12 +32,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.749510323082" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.752241297080" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.749510323082" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.752241297080" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.749510323082" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.749510323082" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.752241297080" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.752241297080" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -205,23 +205,53 @@
 <li><a href="https://github.com/akis-project/docker-compose">docker-compose</a></li>
 </ul>
 </li>
-<li>Switch to respective branches of each repository and pull the latest code:</li>
+<li>Switch to respective branches of each repository and pull the latest code, then install dependencies.</li>
 </ol>
+<doc-tabs>
+<doc-tab v-cloak id="react">
+<template #title>react</template>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># akis-react-app
-git switch dev
-npm install
+<pre class="language-bash"><code v-pre class="language-bash"># Go into directory
+cd akis-react-app
 
-# akis-nodejs-api
+# Pull latest dev code
 git switch dev
-npm install
+# Or you can use 'git checkout -b dev' and then 'git pull origin dev'
 
-# akis-flask-api
-git switch dev
-
-# docker-compose
-# stay in 'main'</code></pre>
+# Install dependencies
+npm install</code></pre>
 </doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="nodejs">
+<template #title>nodejs</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Go into directory
+cd akis-nodejs-api
+
+# Pull latest dev code
+git switch dev
+# Or you can use 'git checkout -b dev' and then 'git pull origin dev'
+
+# Install dependencies
+npm install</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="flask">
+<template #title>flask</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Go into directory
+cd akis-flask-api
+
+# Pull latest dev code
+git switch dev
+# Or you can use 'git checkout dev' and then 'git pull origin dev'
+
+# Here we don't install dependencies.
+# Because we don't know if flask has such ability that it reflects local code changes immediately to the docker container.
+# React and Nodejs can do that. We don't need to restart the containers to see the changes. (At least it was working when i left the project)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
 <ol start="4">
 <li>Create volumes in project directory (you must be in akis-project folder, at the root)</li>
 </ol>
