@@ -24,23 +24,52 @@ Oh, also at least 30 GB free space :skull:
    - [akis-nodejs-api](https://github.com/akis-project/akis-nodejs-api)
    - [akis-flask-api](https://github.com/akis-project/akis-flask-api)
    - [docker-compose](https://github.com/akis-project/docker-compose)
-3. Switch to respective branches of each repository and pull the latest code:
+3. Switch to respective branches of each repository and pull the latest code, then install dependencies.
+
++++react
 
 ```sh
-# akis-react-app
+# Go into directory
+cd akis-react-app
+
+# Pull latest dev code
 git switch dev
+# Or you can use 'git checkout -b dev' and then 'git pull origin dev'
+
+# Install dependencies
 npm install
-
-# akis-nodejs-api
-git switch dev
-npm install
-
-# akis-flask-api
-git switch dev
-
-# docker-compose
-# stay in 'main'
 ```
+
++++nodejs
+
+```sh
+# Go into directory
+cd akis-nodejs-api
+
+# Pull latest dev code
+git switch dev
+# Or you can use 'git checkout -b dev' and then 'git pull origin dev'
+
+# Install dependencies
+npm install
+```
+
++++flask
+
+```sh
+# Go into directory
+cd akis-flask-api
+
+# Pull latest dev code
+git switch dev
+# Or you can use 'git checkout dev' and then 'git pull origin dev'
+
+# Here we don't install dependencies.
+# Because we don't know if flask has such ability that it reflects local code changes immediately to the docker container.
+# React and Nodejs can do that. We don't need to restart the containers to see the changes. (At least it was working when i left the project)
+```
+
++++
 
 4. Create volumes in project directory (you must be in akis-project folder, at the root)
 
